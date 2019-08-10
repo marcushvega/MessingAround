@@ -4,6 +4,11 @@ import Foundation
 
 class Tasks {
     
+    enum Property: Int {
+        case title = 0, timed, time, count, location, marcusCoins, notes
+    }
+    
+    
     let title: String
     var timed: Bool
     var time: Int?
