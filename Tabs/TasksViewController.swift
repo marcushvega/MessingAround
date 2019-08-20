@@ -9,9 +9,22 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tasksTableView: UITableView!
     
+    
     // MARK: - Selectors
     @objc func handleDropDown() {
-        print("Dropdown menu")
+        print("dropdown button")
+        
+        
+        
+    }
+    
+    func numberOfRowsInSection(section: Int) -> Int {
+        if (section == 0) {
+            return 0
+        }
+        else {
+            return 4
+        }
     }
     
     // MARK: - Helper Functions
@@ -41,7 +54,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // TableView DataSource method
     // defines number of rows that will be in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 4
     }
     
     // TableView DataSource method
@@ -51,23 +64,29 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
         
         // text to be assigned is taskName String from TasksBank class
-        cell.textLabel?.text = allTasks.taskList[0].title
+        //  I will be using a switch statement to determine the information shown in each cell
+        switch indexPath.row {
+        case 0:
+            if (allTasks.taskList[indexPath.row].timed) {
+                cell.textLabel?.text = "indexPath.row is \(indexPath.row)"
+            }
+            else {
+                cell.textLabel?.text = "Current completions of this task: \(allTasks.taskList[indexPath.row].count)"
+            }
+        case 1:
+            cell.textLabel?.text = "Location \(allTasks.taskList[indexPath.row].location)"
+        default:
+            cell.textLabel?.text = "This is my default text"
+        }
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        print("\(allTasks.taskList[indexPath.row].title) has been selected")
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        
     }
-    
-//    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-//        <#code#>
-//    }
     
     // one solution is to have a tableview section with an embedded button
     //   clicking the button will cause the section to display its cells
@@ -94,13 +113,5 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         
         return button
     }
-    
-    // apparently a header for a section is not the same as a cell
-    //    can a section be opened and closed?
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return allTasks.taskList[section].title
-//    }
-    
-//    func tableview
-    
+
 }

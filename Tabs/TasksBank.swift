@@ -14,5 +14,7 @@ class TaskBank {
         taskList.append(Tasks(title: "Wash Kitchen Floor", timed: false, time: nil, count: 0, location: "Kitchen/Laundry Room", marcusCoins: 30, notes: "Use lysol and mop, but also spot clean dirtier tiles using fake horsehair brush"))
         
         taskList.append(Tasks(title: "Clean Office Room", timed: true, time: 15, count: 0, location: "Office Room", marcusCoins: 35, notes: "Get a box. Through unnecessary items in the box."))
+        
+        taskList.append(Tasks(title: "Wash Clothes", timed: false, time: nil, count: 0, location: "Laundry Room", marcusCoins: 10, notes: "If you wash clothes then you must dry those clothes on the same day and preferably within (2) hours after the clothes have finished being washed"))
     }
 }
