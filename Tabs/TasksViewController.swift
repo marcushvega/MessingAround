@@ -15,21 +15,12 @@ class TasksViewController: UIViewController {
         print("dropdown button")
         
         
-        
-    }
-    
-    func numberOfRowsInSection(section: Int) -> Int {
-        if (section == 0) {
-            return 0
-        }
-        else {
-            return 4
-        }
     }
     
     // MARK: - Helper Functions
     
     let allTasks = TaskBank()
+    let numberOfDetails = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +45,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // TableView DataSource method
     // defines number of rows that will be in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return numberOfDetails
     }
     
     // TableView DataSource method
@@ -63,20 +54,14 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         // assign text to the current cell in question
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
         
-        // text to be assigned is taskName String from TasksBank class
-        //  I will be using a switch statement to determine the information shown in each cell
-        switch indexPath.row {
-        case 0:
-            if (allTasks.taskList[indexPath.row].timed) {
-                cell.textLabel?.text = "indexPath.row is \(indexPath.row)"
-            }
-            else {
-                cell.textLabel?.text = "Current completions of this task: \(allTasks.taskList[indexPath.row].count)"
-            }
-        case 1:
-            cell.textLabel?.text = "Location \(allTasks.taskList[indexPath.row].location)"
-        default:
-            cell.textLabel?.text = "This is my default text"
+        if (indexPath.row == 0) {
+            cell.textLabel?.text = "Time: \(allTasks.taskList[indexPath.section].time) minutes"
+        }
+        else if (indexPath.row == 1) {
+            cell.textLabel?.text = "Reward: \(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
+        }
+        else if (indexPath.row == numberOfDetails) {
+            
         }
         
         
@@ -104,13 +89,13 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // step 1: create the button
         let button = UIButton(type: .system)
-        
+
         // step 2: give button a title
         button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
         button.backgroundColor = .blue
-        
+
         return button
     }
 
