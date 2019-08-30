@@ -38,6 +38,10 @@ class TasksViewController: UIViewController {
         return dateFormatter.string(from: today)
     }
     
+    func registerTableViewCellCheckmark() {
+        
+    }
+    
 }
 
 extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
@@ -45,7 +49,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // TableView DataSource method
     // defines number of rows that will be in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfDetails
+        return numberOfDetails + 1
     }
     
     // TableView DataSource method
@@ -55,13 +59,27 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
         
         if (indexPath.row == 0) {
-            cell.textLabel?.text = "Time: \(allTasks.taskList[indexPath.section].time) minutes"
+            cell.textLabel?.text = "Time: \(allTasks.taskList[indexPath.section].time ?? 30) minutes"
+            cell.detailTextLabel?.text = "DETAILS AND SUCH"
         }
         else if (indexPath.row == 1) {
             cell.textLabel?.text = "Reward: \(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
         }
+        // customize final cell in section differently
         else if (indexPath.row == numberOfDetails) {
             
+            let completionCell = UITableViewCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
+            
+            completionCell.textLabel?.adjustsFontSizeToFitWidth = true
+            completionCell.textLabel?.text = "Completion Status"
+            completionCell.textLabel?.adjustsFontForContentSizeCategory = true
+            completionCell.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
+            completionCell.detailTextLabel?.text = "INCOMPLETE"
+//            completionCell.backgroundColor = UIColor.magenta
+            
+            
+            
+            return completionCell
         }
         
         

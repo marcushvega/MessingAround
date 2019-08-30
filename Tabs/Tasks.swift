@@ -17,7 +17,7 @@ class Tasks {
     let marcusCoins: Int
     var notes: String?
     
-    init(title: String, timed: Bool, time: Int?, count: Int?, location: String, marcusCoins: Int, notes: String?) {
+    init(title: String, timed: Bool = false, time: Int?, count: Int?, location: String, marcusCoins: Int, notes: String?) {
         self.title = title
         self.timed = timed
         
