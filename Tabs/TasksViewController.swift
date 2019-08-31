@@ -8,7 +8,12 @@ class TasksViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tasksTableView: UITableView!
+    @IBOutlet weak var completionCellDetailLabel: UILabel!
     
+    enum completionStatus {
+        case complete
+        case incomplete
+    }
     
     // MARK: - Selectors
     @objc func handleDropDown() {
@@ -68,16 +73,11 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         // customize final cell in section differently
         else if (indexPath.row == numberOfDetails) {
             
-            let completionCell = UITableViewCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
+//            let completionCell = UITableViewCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
             
-            completionCell.textLabel?.adjustsFontSizeToFitWidth = true
-            completionCell.textLabel?.text = "Completion Status"
-            completionCell.textLabel?.adjustsFontForContentSizeCategory = true
-            completionCell.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
-            completionCell.detailTextLabel?.text = "INCOMPLETE"
-//            completionCell.backgroundColor = UIColor.magenta
+            let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
             
-            
+            completionCell.createCompletionCell()
             
             return completionCell
         }
