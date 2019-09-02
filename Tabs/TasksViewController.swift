@@ -25,7 +25,7 @@ class TasksViewController: UIViewController {
     // MARK: - Helper Functions
     
     let allTasks = TaskBank()
-    let numberOfDetails = 2
+    let numberOfDetails = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,21 +61,33 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // assign text to the current cell in question
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "TaskItemCell")
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        cell.textLabel?.textColor = UIColor.blue
+        
+        cell.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
         
         if (indexPath.row == 0) {
-            cell.textLabel?.text = "Time: \(allTasks.taskList[indexPath.section].time ?? 30) minutes"
-            cell.detailTextLabel?.text = "DETAILS AND SUCH"
+            cell.textLabel?.text = "Time: "
+            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 30) minutes"
         }
         else if (indexPath.row == 1) {
-            cell.textLabel?.text = "Reward: \(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
+            cell.textLabel?.text = "Reward: "
+            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
+        }
+        else if (indexPath.row == 2) {
+            let notesCell = NotesCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "NotesCell")
+            
+            notesCell.createNotesCell()
+            
+            return notesCell
         }
         // customize final cell in section differently
         else if (indexPath.row == numberOfDetails) {
             
-//            let completionCell = UITableViewCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
-            
-            let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value2, reuseIdentifier: "CompletionItemCell")
+            let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CompletionItemCell")
             
             completionCell.createCompletionCell()
             
@@ -87,7 +99,6 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

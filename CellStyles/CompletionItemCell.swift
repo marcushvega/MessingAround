@@ -10,7 +10,8 @@ class CompletionItemCell: UITableViewCell {
     func createCompletionCell() {
         self.textLabel?.adjustsFontSizeToFitWidth = true
         self.textLabel?.adjustsFontForContentSizeCategory = true
-        self.textLabel?.text = "Completion Status"
+        self.textLabel?.textColor = UIColor.blue
+        self.textLabel?.text = "Completion Status:"
         
         self.detailTextLabel?.text = "INCOMPLETE"
         self.detailTextLabel?.textColor = UIColor.brown
