@@ -42,17 +42,17 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41898450799999998" green="1" blue="0.59140146329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotesCell" id="9LV-s7-LAe" customClass="NotesCell" customModule="Tabs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="startButtonCell" id="9LV-s7-LAe" customClass="NotesCell" customModule="Tabs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9LV-s7-LAe" id="eY3-43-UYb">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41898450799999998" green="1" blue="0.59140146329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="isItCompleted"/>
                                         <connections>
-                                            <segue destination="h6P-ll-jY2" kind="show" trigger="accessoryAction" id="6YD-It-204"/>
+                                            <segue destination="UCB-M3-QGK" kind="presentation" trigger="accessoryAction" id="5Af-AD-Yvu"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CompletionItemCell" id="yuX-HC-Fwu" customClass="CompletionItemCell" customModule="Tabs" customModuleProvider="target">
@@ -196,4 +196,7 @@
     <resources>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Af-AD-Yvu"/>
+    </inferredMetricsTieBreakers>
 </document>

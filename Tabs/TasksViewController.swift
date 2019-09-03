@@ -25,7 +25,7 @@ class TasksViewController: UIViewController {
     // MARK: - Helper Functions
     
     let allTasks = TaskBank()
-    let numberOfDetails = 3
+    let numberOfDetails = 3 // time to completion, reward
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,20 +78,19 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
             cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
         }
         else if (indexPath.row == 2) {
-            let notesCell = NotesCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "NotesCell")
-            
-            notesCell.createNotesCell()
-            
-            return notesCell
-        }
-        // customize final cell in section differently
-        else if (indexPath.row == numberOfDetails) {
             
             let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CompletionItemCell")
             
             completionCell.createCompletionCell()
             
             return completionCell
+        }
+        else if (indexPath.row == numberOfDetails) {
+            let startButtonCell = StartButtonCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "startButtonCell")
+            
+            startButtonCell.createStartButtonCell()
+            
+            return startButtonCell
         }
         
         
@@ -128,4 +127,10 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         return button
     }
 
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        // when disclosure button at startButtonCell is clicked
+        if (indexPath.row == numberOfDetails) {
+            
+        }
+    }
 }
