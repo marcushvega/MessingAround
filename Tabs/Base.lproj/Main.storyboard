@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Goes Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3i-kf-7v2">
-                                <rect key="frame" x="16" y="34" width="288" height="71"/>
+                                <rect key="frame" x="16" y="78" width="288" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="9MT-gG-cjU"/>
                                 </constraints>
@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lbK-uS-9jn">
-                                <rect key="frame" x="0.0" y="113" width="320" height="406"/>
+                                <rect key="frame" x="0.0" y="157" width="320" height="362"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,18 +42,15 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41898450799999998" green="1" blue="0.59140146329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="startButtonCell" id="9LV-s7-LAe" customClass="NotesCell" customModule="Tabs" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="startButtonCell" id="9LV-s7-LAe" customClass="StartButtonCell" customModule="Tabs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9LV-s7-LAe" id="eY3-43-UYb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.41898450799999998" green="1" blue="0.59140146329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" identifier="isItCompleted"/>
-                                        <connections>
-                                            <segue destination="UCB-M3-QGK" kind="presentation" trigger="accessoryAction" id="5Af-AD-Yvu"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CompletionItemCell" id="yuX-HC-Fwu" customClass="CompletionItemCell" customModule="Tabs" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="320" height="44"/>
@@ -84,20 +81,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="7hM-zx-obM"/>
                     <connections>
                         <outlet property="dateLabel" destination="n3i-kf-7v2" id="6bb-Df-VVl"/>
                         <outlet property="tasksTableView" destination="lbK-uS-9jn" id="tVP-fx-Wyj"/>
+                        <segue destination="UCB-M3-QGK" kind="show" identifier="startButtonSegue" id="qtT-Gu-ILA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-301.05633802816902"/>
+            <point key="canvasLocation" x="1747.5" y="-301.05633802816902"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="BAT-Gk-cVq">
             <objects>
-                <viewController id="UCB-M3-QGK" sceneMemberID="viewController">
+                <viewController id="UCB-M3-QGK" customClass="SecondViewController" customModule="Tabs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MGg-oe-ZWI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -117,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ib-pc-ed7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2655" y="-300"/>
+            <point key="canvasLocation" x="2852" y="-301"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -154,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="1747.5" y="359.15492957746477"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -166,7 +164,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="CFh-B3-nmr" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
@@ -175,28 +173,26 @@
             <point key="canvasLocation" x="-264" y="99"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Bsf-K3-k27">
+        <scene sceneID="ucA-C8-dGy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h6P-ll-jY2" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CFh-B3-nmr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" id="acW-dT-cKf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7dn-I2-l5O">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DBS-Sy-oiB">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="UCB-M3-QGK" kind="relationship" relationship="rootViewController" id="bvG-Vp-YSb"/>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="oKs-bj-oMT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9nM-P6-pbX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YNe-2L-Ltg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657.5" y="-300"/>
+            <point key="canvasLocation" x="750" y="-301.05633802816902"/>
         </scene>
     </scenes>
     <resources>
         <image name="second" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="5Af-AD-Yvu"/>
-    </inferredMetricsTieBreakers>
 </document>
