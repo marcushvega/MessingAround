@@ -29,4 +29,8 @@ class StartButtonCell: UITableViewCell {
         
     }
     
+    func cellType() -> String {
+        return "start"
+    }
+    
 }

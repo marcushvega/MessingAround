@@ -100,15 +100,10 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        // if cell is of StartButtonCell type
-        //       implement perform performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-//        if tableView.dequeueReusableCell(withIdentifier: "startButtonCell", for: indexPath)
-        if tableView.dequeueReusableCell(withIdentifier: "startButtonCell") != nil {
+        // check whether the row is the same row that is used for placing StartButtonCell
+        if (indexPath.row == numberOfDetails) {
             performSegue(withIdentifier: "startButtonSegue", sender: nil)
         }
-        
-           // performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-        
         
     }
     

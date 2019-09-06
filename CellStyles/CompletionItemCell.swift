@@ -22,4 +22,8 @@ class CompletionItemCell: UITableViewCell {
         //            completionCell.detailTextLabel?.textAlignment = NSTextAlignment.right
         //            completionCell.backgroundColor = UIColor.magenta
     }
+    
+    func cellType() -> String {
+        return "completion"
+    }
 }
