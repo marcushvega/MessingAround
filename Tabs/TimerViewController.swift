@@ -9,7 +9,7 @@ class TimerViewController: UIViewController {
     
     var timer: Timer?
     var timeLeft = 10
-    var paused = true
+    var timerIsPaused = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,32 +22,32 @@ class TimerViewController: UIViewController {
         // creates timer text for hh:mm:ss
         timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft /  3600), (timeLeft / 60), (timeLeft % 60))
         
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 || timerIsPaused) {
             timer?.invalidate()
             timer = nil
         }
     }
     
-    @objc func pauseTimer() {
-        
-    }
-    
     @IBAction func playOrPause(_ sender: Any) {
-        
-        if (paused) {
-            // pauses the timer
-            timer?.invalidate()
-            paused = true
+        if (timerIsPaused) {
+            timerIsPaused = false
+            print("Currently in playOrPause and timerIsPaused = \(timerIsPaused)")
+        }
+        else {
+            timerIsPaused = true
+            print("Currently in playOrPause and timerIsPaused = \(timerIsPaused)")
         }
         
-        if (!paused) {
-            // starts the timer
-            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
-            paused = false
-        }
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
+        
+        print("I am in the playOrPause IBAction func")
         
     }
     
-
+    @IBAction func cancelTimer(_ sender: Any) {
+        timer?.invalidate()
+        timer = nil
+    }
+    
 }
 
