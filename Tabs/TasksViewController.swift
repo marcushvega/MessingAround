@@ -132,11 +132,6 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
 
         return button
     }
-
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        // when disclosure button at startButtonCell is clicked
-        if (indexPath.row == numberOfDetails) {
-            
-        }
-    }
+    
+    
 }
