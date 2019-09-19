@@ -128,7 +128,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
-        button.backgroundColor = .blue
+        button.backgroundColor = UIColor.init(red: 64/255, green: 196/255, blue: 255/255, alpha: 1)
 
         return button
     }

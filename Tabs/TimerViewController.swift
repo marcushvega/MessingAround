@@ -8,7 +8,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     
     var timer: Timer?
-    var timeLeft = 10
+    var timeLeft = 3600
     var timerIsPaused = true
     
     override func viewDidLoad() {
@@ -29,24 +29,25 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func playOrPause(_ sender: Any) {
+        // if timer is not running then start timer
         if (timerIsPaused) {
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
             timerIsPaused = false
-            print("Currently in playOrPause and timerIsPaused = \(timerIsPaused)")
         }
+        // if timer is running then pause timer
         else {
+            timer?.invalidate()
             timerIsPaused = true
-            print("Currently in playOrPause and timerIsPaused = \(timerIsPaused)")
         }
-        
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
-        
-        print("I am in the playOrPause IBAction func")
-        
     }
     
     @IBAction func cancelTimer(_ sender: Any) {
-        timer?.invalidate()
+        timer?.invalidate()    // cancels timer
         timer = nil
+        timeLeft = 3605        // resets time
+        
+        // resets time text
+        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft %  3600), (timeLeft % 60), (timeLeft % 60))
     }
     
 }
