@@ -8,12 +8,29 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     
     var timer: Timer?
-    var timeLeft = 3600
+    var timeLeft = 1800
     var timerIsPaused = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        timerLabel.layer.borderWidth = 1.1
+        timerLabel.layer.cornerRadius = 30.0
+        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
+        timerLabel.backgroundColor = UIColor.white
+        timerLabel.
+        
+        playPauseBtn.layer.borderWidth = 2.5
+        playPauseBtn.layer.cornerRadius = 20
+//        playPauseBtn.layer.borderColor = ????
+        playPauseBtn.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.8)
+        playPauseBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        
+        cancelBtn.layer.borderWidth = 2.5
+        cancelBtn.layer.cornerRadius = 15
+        cancelBtn.backgroundColor = UIColor.init(red: 229/255, green: 71/255, blue: 71/255, alpha: 0.8)
+        cancelBtn.setTitleColor(UIColor.white, for: .normal)
     }
 
     @objc func startTimer() {
