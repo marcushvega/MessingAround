@@ -18,7 +18,7 @@ class TimerViewController: UIViewController {
         timerLabel.layer.cornerRadius = 30.0
         timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
         timerLabel.backgroundColor = UIColor.white
-        timerLabel.
+        timerLabel.layer.masksToBounds = true
         
         playPauseBtn.layer.borderWidth = 2.5
         playPauseBtn.layer.cornerRadius = 20
