@@ -20,7 +20,7 @@ class TimerViewController: UIViewController {
         timeLeft -= 1
         
         // creates timer text for hh:mm:ss
-        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft /  3600), (timeLeft / 60), (timeLeft % 60))
+        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
         
         if (timeLeft <= 0 || timerIsPaused) {
             timer?.invalidate()
@@ -47,7 +47,7 @@ class TimerViewController: UIViewController {
         timeLeft = 3605        // resets time
         
         // resets time text
-        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft %  3600), (timeLeft % 60), (timeLeft % 60))
+        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
     }
     
 }
