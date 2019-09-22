@@ -8,7 +8,7 @@ class TasksViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tasksTableView: UITableView!
-    @IBOutlet weak var completionCellDetailLabel: UILabel!
+    @IBOutlet weak var addTasksStackView: UIStackView!
     
     enum completionStatus {
         case complete
@@ -25,7 +25,7 @@ class TasksViewController: UIViewController {
     // MARK: - Helper Functions
     
     let allTasks = TaskBank()
-    let numberOfDetails = 3 // time to completion, reward
+    let numberOfDetails = 2 // time limit & completion status
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,10 @@ class TasksViewController: UIViewController {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         
         return dateFormatter.string(from: today)
+    }
+    
+    func setupAddTasksStackView() {
+        
     }
     
     func registerTableViewCellCheckmark() {
@@ -74,10 +78,6 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
             cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 30) minutes"
         }
         else if (indexPath.row == 1) {
-            cell.textLabel?.text = "Reward: "
-            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].marcusCoins) MarcusCoins"
-        }
-        else if (indexPath.row == 2) {
             
             let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CompletionItemCell")
             
@@ -121,10 +121,11 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // do i need to loop if i want multiple buttons? no
     // apparently viewForHeaderInSection section does something
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         // step 1: create the button
         let button = UIButton(type: .system)
-
-        // step 2: give button a title
+        
+        // step 2: give button details
         button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
