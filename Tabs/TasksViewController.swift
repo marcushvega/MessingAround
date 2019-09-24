@@ -32,6 +32,18 @@ class TasksViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         dateLabel.text = getDate()
+        
+//        navigationController?.navigationItem.title = "Add Task"
+//        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Add Task"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+    }
+    
+    @objc func addTask() {
+        
     }
 
     func getDate() -> String {
@@ -102,7 +114,18 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         
         // check whether the row is the same row that is used for placing StartButtonCell
         if (indexPath.row == numberOfDetails) {
+            //grab task from the index you just clicked
+            //pass task from index in sender
             performSegue(withIdentifier: "startButtonSegue", sender: nil)
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //set task for the vc we're going to
+        //by grab task 
+        if let vc = segue.destination as? TimerViewController {
+            //vc.task = sender as! Tasks//grab task from the indexpath
         }
         
     }

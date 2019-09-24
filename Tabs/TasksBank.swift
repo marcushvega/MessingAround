@@ -2,6 +2,12 @@
 
 import Foundation
 
+//API
+//protocol TaskBanking {
+//    func addTask()
+//    func removeTask()
+//}
+
 class TaskBank {
     
 //    var taskList = [(String, Bool, Int, String, String, Int, String)]()
@@ -23,6 +29,10 @@ class TaskBank {
 //    }
     
     var taskList = [Tasks]()
+    
+    func addTask() {
+        
+    }
     
     init() {
         taskList.append(Tasks(title: "Clean Living Room", timed: true, time: 30, count: nil, location: "Living Room", marcusCoins: 50, notes: nil))
