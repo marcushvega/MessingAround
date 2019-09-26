@@ -8,6 +8,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     
     var timer: Timer?
+    var initialTime = 1800
     var timeLeft = 1800
     var timerIsPaused = true
 //    var task: Task?
@@ -73,7 +74,7 @@ class TimerViewController: UIViewController {
     @IBAction func cancelTimer(_ sender: Any) {
         timer?.invalidate()    // cancels timer
         timer = nil
-        timeLeft = 3605        // resets time
+        timeLeft = initialTime       // resets time
         
         // resets time text
         timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))

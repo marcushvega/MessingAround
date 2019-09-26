@@ -43,7 +43,7 @@ class TasksViewController: UIViewController {
     }
     
     @objc func addTask() {
-        
+        performSegue(withIdentifier: "addTaskSegue", sender: self)
     }
 
     func getDate() -> String {
@@ -54,17 +54,9 @@ class TasksViewController: UIViewController {
         
         return dateFormatter.string(from: today)
     }
-    
-    func setupAddTasksStackView() {
-        
-    }
-    
-    func registerTableViewCellCheckmark() {
-        
-    }
-    
 }
 
+    // MARK: - extensions
 extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     
     // TableView DataSource method
@@ -124,15 +116,28 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //set task for the vc we're going to
         //by grab task
-        guard let vc = segue.destination as? TimerViewController else {
-            print("Your ViewController is not of type TimerViewController")
-            return
-        }
+        if (segue.identifier == "startButtonSegue") {
+            guard let vc = segue.destination as? TimerViewController else {
+                print("Your ViewController is not of type TimerViewController")
+                return
+            }
         
         // sender, in this case, comes in as some number of minutes
         // so it needs to be converted to seconds...so I can later convert it to minutes and hours and seconds
+        vc.initialTime = sender as! Int
+        vc.initialTime *= 60
+        
+        
         vc.timeLeft = sender as! Int
         vc.timeLeft *= 60
+        }
+        
+        else if (segue.identifier == "addTaskSegue") {
+            guard let vc = segue.destination as? AddTaskViewController else {
+                print("Your ViewController is not of type AddTaskViewController")
+                return
+            }
+        }
     }
     
     // one solution is to have a tableview section with an embedded button
@@ -145,9 +150,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
-    // do i need to loop if i want multiple buttons? no
-    // apparently viewForHeaderInSection section does something
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // step 1: create the button

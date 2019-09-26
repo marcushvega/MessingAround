@@ -86,11 +86,66 @@
                         <outlet property="dateLabel" destination="n3i-kf-7v2" id="6bb-Df-VVl"/>
                         <outlet property="tasksTableView" destination="lbK-uS-9jn" id="tVP-fx-Wyj"/>
                         <segue destination="UCB-M3-QGK" kind="show" identifier="startButtonSegue" id="qtT-Gu-ILA"/>
+                        <segue destination="MSU-Zk-Kc7" kind="show" identifier="addTaskSegue" id="KZC-Y7-nQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1747.5" y="-301.05633802816902"/>
+        </scene>
+        <!--Add Task View Controller-->
+        <scene sceneID="XxT-qA-BTD">
+            <objects>
+                <viewController id="MSU-Zk-Kc7" customClass="AddTaskViewController" customModule="Tabs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gR7-mx-6up">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o75-st-XU6">
+                                <rect key="frame" x="163" y="159" width="141" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-MC-um9">
+                                <rect key="frame" x="16" y="159" width="114" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJV-rf-nkX">
+                                <rect key="frame" x="101" y="365" width="119" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" title="Submit"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="30 (minutes)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgK-LY-BFN">
+                                <rect key="frame" x="163" y="231" width="141" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-5J-c4b">
+                                <rect key="frame" x="16" y="231" width="126" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.62745098039215685" green="0.6470588235294118" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RJV-rf-nkX" firstAttribute="leading" secondItem="WXh-2C-6s2" secondAttribute="leading" constant="101" id="idh-eg-aLd"/>
+                            <constraint firstItem="WXh-2C-6s2" firstAttribute="bottom" secondItem="RJV-rf-nkX" secondAttribute="bottom" constant="110" id="nuv-r9-NNZ"/>
+                            <constraint firstItem="WXh-2C-6s2" firstAttribute="trailing" secondItem="RJV-rf-nkX" secondAttribute="trailing" constant="100" id="zoY-GH-0bi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WXh-2C-6s2"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Pd-cw-tl7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pK9-kH-20O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2752.5" y="-658.09859154929575"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="BAT-Gk-cVq">
@@ -138,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ib-pc-ed7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2851.875" y="-301.05633802816902"/>
+            <point key="canvasLocation" x="2753" y="88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ucA-C8-dGy">

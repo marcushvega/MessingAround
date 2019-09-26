@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F8B2E48231AFD8100807A84 /* CompletionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B2E47231AFD8100807A84 /* CompletionItemCell.swift */; };
 		4F8B2E4F231D985B00807A84 /* StartButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B2E4E231D985B00807A84 /* StartButtonCell.swift */; };
+		4F9A404F233D3A1F0008FD5B /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */; };
 		4FD2076322F3E89C00866B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2076222F3E89C00866B1B /* AppDelegate.swift */; };
 		4FD2076522F3E89C00866B1B /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2076422F3E89C00866B1B /* TasksViewController.swift */; };
 		4FD2076722F3E89C00866B1B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2076622F3E89C00866B1B /* TimerViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		4F8B2E47231AFD8100807A84 /* CompletionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionItemCell.swift; sourceTree = "<group>"; };
 		4F8B2E4E231D985B00807A84 /* StartButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonCell.swift; sourceTree = "<group>"; };
+		4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		4FD2075F22F3E89C00866B1B /* Tabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD2076222F3E89C00866B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FD2076422F3E89C00866B1B /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				4FD2077022F3E89E00866B1B /* Info.plist */,
 				4FD2077922F3EC0E00866B1B /* Task.swift */,
 				4FD2077B22F3EC1A00866B1B /* TasksBank.swift */,
+				4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				4FD2077C22F3EC1A00866B1B /* TasksBank.swift in Sources */,
 				4F8B2E48231AFD8100807A84 /* CompletionItemCell.swift in Sources */,
 				4FD2076722F3E89C00866B1B /* TimerViewController.swift in Sources */,
+				4F9A404F233D3A1F0008FD5B /* AddTaskViewController.swift in Sources */,
 				4FD2076322F3E89C00866B1B /* AppDelegate.swift in Sources */,
 				4FD2076522F3E89C00866B1B /* TasksViewController.swift in Sources */,
 			);
