@@ -15,20 +15,6 @@ class StartButtonCell: UITableViewCell {
         self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
     }
     
-    func startTimer() {
-        
-    }
-    
-    func pauseTimer() {
-        
-    }
-    
-    func cancelTimer() {
-        
-        // before cancelling, a toast appears asking user whether they are sure they want to cancel session
-        
-    }
-    
     func cellType() -> String {
         return "start"
     }

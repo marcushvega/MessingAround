@@ -114,20 +114,25 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         
         // check whether the row is the same row that is used for placing StartButtonCell
         if (indexPath.row == numberOfDetails) {
-            //grab task from the index you just clicked
-            //pass task from index in sender
-            performSegue(withIdentifier: "startButtonSegue", sender: nil)
+            
+            // sender can apparently send an integer
+            // sender sends time in minutes
+            performSegue(withIdentifier: "startButtonSegue", sender: allTasks.taskList[indexPath.section].time)
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //set task for the vc we're going to
-        //by grab task 
-        if let vc = segue.destination as? TimerViewController {
-            //vc.task = sender as! Tasks//grab task from the indexpath
+        //by grab task
+        guard let vc = segue.destination as? TimerViewController else {
+            print("Your ViewController is not of type TimerViewController")
+            return
         }
         
+        // sender, in this case, comes in as some number of minutes
+        // so it needs to be converted to seconds...so I can later convert it to minutes and hours and seconds
+        vc.timeLeft = sender as! Int
+        vc.timeLeft *= 60
     }
     
     // one solution is to have a tableview section with an embedded button

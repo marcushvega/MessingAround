@@ -2,7 +2,7 @@
 
 import Foundation
 
-class Tasks {
+class Task {
     
     enum Property: Int {
         case title = 0, timed, time, count, location, marcusCoins, notes

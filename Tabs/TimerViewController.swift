@@ -10,7 +10,7 @@ class TimerViewController: UIViewController {
     var timer: Timer?
     var timeLeft = 1800
     var timerIsPaused = true
-    var task: Tasks?
+//    var task: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
