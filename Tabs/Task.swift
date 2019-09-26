@@ -4,32 +4,25 @@ import Foundation
 
 class Task {
     
-    enum Property: Int {
-        case title = 0, timed, time, count, location, marcusCoins, notes
-    }
+//    enum Property: Int {
+//        case title = 0, timed, time, count, location, marcusCoins, notes
+//    }
     
     
     let title: String
-    var timed: Bool
     var time: Int?
     var count: Int?
-    let location: String
-    let marcusCoins: Int
     var notes: String?
     
-    init(title: String, timed: Bool = false, time: Int?, count: Int?, location: String, marcusCoins: Int, notes: String?) {
+// for a later version
+    //    var timed: Bool
+    //    let location: String
+    //    let marcusCoins: Int
+    
+    init(title: String, time: Int?, count: Int?, notes: String?) {
         self.title = title
-        self.timed = timed
-        
-        if self.timed {
-            self.time = time
-        }
-        else {
-            self.count = 0
-        }
-        
-        self.location = location
-        self.marcusCoins = marcusCoins
+        self.count = 0
+        self.time = time
         
         if notes != nil {
             self.notes = notes
