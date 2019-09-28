@@ -75,7 +75,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.adjustsFontForContentSizeCategory = true
         cell.textLabel?.textColor = UIColor.blue
         
-        cell.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
+        cell.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
         
         if (indexPath.row == 0) {
             cell.textLabel?.text = "Time: "
@@ -160,7 +160,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
-        button.backgroundColor = UIColor.init(red: 64/255, green: 196/255, blue: 255/255, alpha: 1)
+        button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)
 
         return button
     }

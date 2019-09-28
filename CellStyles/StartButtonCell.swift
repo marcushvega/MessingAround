@@ -5,7 +5,7 @@ import UIKit
 class StartButtonCell: UITableViewCell {
     
     func createStartButtonCell() {
-        self.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
+        self.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
         
         self.textLabel?.text = "Start"
         self.textLabel?.textColor = UIColor.blue

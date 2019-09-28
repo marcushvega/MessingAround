@@ -5,13 +5,43 @@ import UIKit
 class AddTaskViewController: UIViewController {
 
     var task: Task?
+    @IBOutlet weak var taskTitleLabel: UILabel!
+    @IBOutlet weak var taskTitleTextField: UITextField!
+    @IBOutlet weak var timeLimitLabel: UILabel!
+    @IBOutlet weak var timeLimitTextField: UITextField!
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupSubmitButton()
     }
     
+    // MARK: - View objects
+    func setupTaskTitleLabel() {
+        
+    }
+    
+    func setuptaskTitleTextField() {
+        
+    }
+    
+    func setupTimeLimitLabel() {
+        
+    }
+    
+    func setupTimeLimitTextField() {
+        
+    }
+    
+    func setupSubmitButton() {
+//        submitButton.layer.borderColor =
+        submitButton.layer.borderWidth = 2.5
+        submitButton.layer.cornerRadius = 20
+        submitButton.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.6)
+        submitButton.setTitleColor(UIColor.white, for: .normal)
+        submitButton.setTitleColor(UIColor.red, for: .selected)
+    }
 
     /*
     // MARK: - Navigation

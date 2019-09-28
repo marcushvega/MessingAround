@@ -16,7 +16,7 @@ class CompletionItemCell: UITableViewCell {
         self.detailTextLabel?.text = "INCOMPLETE"
         self.detailTextLabel?.textColor = UIColor.brown
         
-        self.backgroundColor = UIColor.init(red: 107/255, green: 255/255, blue: 151/255, alpha: 0.88)
+        self.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
 
         //            completionCell.textLabel?.textAlignment = NSTextAlignment.right
         //            completionCell.detailTextLabel?.textAlignment = NSTextAlignment.right
