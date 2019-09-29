@@ -2,36 +2,46 @@
 
 import UIKit
 
-class AddTaskViewController: UIViewController {
+class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
     var task: Task?
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var timeLimitLabel: UILabel!
-    @IBOutlet weak var timeLimitTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var timeLimitPicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupSubmitButton()
+        
+        taskTitleTextField.delegate = self
     }
     
     // MARK: - View objects
+    
     func setupTaskTitleLabel() {
         
     }
     
     func setuptaskTitleTextField() {
-        
+    
     }
     
     func setupTimeLimitLabel() {
         
     }
     
-    func setupTimeLimitTextField() {
+    // restrict number of characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
         
+        guard let stringRange = Range(range, in: currentText) else {return false}
+        
+        let newText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        return newText.count <= 25
     }
     
     func setupSubmitButton() {

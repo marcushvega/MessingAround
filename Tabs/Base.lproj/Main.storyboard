@@ -101,43 +101,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o75-st-XU6">
-                                <rect key="frame" x="163" y="159" width="141" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <textField opaque="NO" contentMode="TopLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Title" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="o75-st-XU6">
+                                <rect key="frame" x="17.5" y="135" width="285" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="o75-st-XU6" secondAttribute="height" multiplier="121:17" id="N97-UP-esK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-MC-um9">
-                                <rect key="frame" x="16" y="159" width="114" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5I-MC-um9">
+                                <rect key="frame" x="99.5" y="84" width="121" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J5I-MC-um9" secondAttribute="height" multiplier="57:17" id="aJd-J6-g6x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJV-rf-nkX">
-                                <rect key="frame" x="101" y="337" width="119" height="72"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-5J-c4b">
+                                <rect key="frame" x="93" y="220" width="134" height="36.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Dvd-5J-c4b" secondAttribute="height" multiplier="125:34" id="6gA-2I-DRs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJV-rf-nkX">
+                                <rect key="frame" x="100" y="420" width="119" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RJV-rf-nkX" secondAttribute="height" multiplier="119:44" id="s3h-qi-QKN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Submit"/>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="30 (minutes)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SgK-LY-BFN">
-                                <rect key="frame" x="163" y="270" width="140" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-5J-c4b">
-                                <rect key="frame" x="16" y="270" width="125.5" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnP-oN-BYp">
+                                <rect key="frame" x="5" y="266.5" width="310" height="168"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PnP-oN-BYp" secondAttribute="height" multiplier="323:175" id="BUR-RX-WL2"/>
+                                </constraints>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.62745098039215685" green="0.6470588235294118" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RJV-rf-nkX" firstAttribute="leading" secondItem="WXh-2C-6s2" secondAttribute="leading" constant="101" id="idh-eg-aLd"/>
-                            <constraint firstItem="WXh-2C-6s2" firstAttribute="bottom" secondItem="RJV-rf-nkX" secondAttribute="bottom" constant="110" id="nuv-r9-NNZ"/>
-                            <constraint firstItem="WXh-2C-6s2" firstAttribute="trailing" secondItem="RJV-rf-nkX" secondAttribute="trailing" constant="100" id="zoY-GH-0bi"/>
+                            <constraint firstItem="J5I-MC-um9" firstAttribute="centerX" secondItem="gR7-mx-6up" secondAttribute="centerX" id="9P9-m0-sX7"/>
+                            <constraint firstAttribute="trailing" secondItem="PnP-oN-BYp" secondAttribute="trailing" id="G9K-o2-8WT"/>
+                            <constraint firstItem="WXh-2C-6s2" firstAttribute="bottom" secondItem="RJV-rf-nkX" secondAttribute="bottom" constant="55" id="LCW-HQ-nNp"/>
+                            <constraint firstItem="o75-st-XU6" firstAttribute="centerX" secondItem="gR7-mx-6up" secondAttribute="centerX" id="PRT-tt-08l"/>
+                            <constraint firstItem="WXh-2C-6s2" firstAttribute="trailing" secondItem="RJV-rf-nkX" secondAttribute="trailing" constant="101" id="SPm-cI-8km"/>
+                            <constraint firstItem="Dvd-5J-c4b" firstAttribute="top" secondItem="o75-st-XU6" secondAttribute="bottom" constant="45" id="WUI-hy-kfy"/>
+                            <constraint firstItem="PnP-oN-BYp" firstAttribute="centerX" secondItem="gR7-mx-6up" secondAttribute="centerX" id="WkE-eA-sfq"/>
+                            <constraint firstItem="Dvd-5J-c4b" firstAttribute="centerX" secondItem="gR7-mx-6up" secondAttribute="centerX" id="cMW-rz-84D"/>
+                            <constraint firstItem="PnP-oN-BYp" firstAttribute="leading" secondItem="WXh-2C-6s2" secondAttribute="leading" constant="5" id="lfd-ca-deu"/>
+                            <constraint firstItem="PnP-oN-BYp" firstAttribute="top" secondItem="Dvd-5J-c4b" secondAttribute="bottom" constant="10" id="qHi-Tf-Yjg"/>
+                            <constraint firstAttribute="trailing" secondItem="PnP-oN-BYp" secondAttribute="trailing" constant="5" id="u2P-nQ-bDw"/>
+                            <constraint firstItem="J5I-MC-um9" firstAttribute="top" secondItem="WXh-2C-6s2" secondAttribute="top" constant="40" id="w8l-4W-G5K"/>
+                            <constraint firstItem="RJV-rf-nkX" firstAttribute="leading" secondItem="WXh-2C-6s2" secondAttribute="leading" constant="100" id="xWu-ta-PqQ"/>
+                            <constraint firstItem="o75-st-XU6" firstAttribute="top" secondItem="J5I-MC-um9" secondAttribute="bottom" constant="15" id="zBf-AF-2vA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WXh-2C-6s2"/>
                     </view>
@@ -147,7 +167,7 @@
                         <outlet property="taskTitleLabel" destination="J5I-MC-um9" id="2vK-sO-DSj"/>
                         <outlet property="taskTitleTextField" destination="o75-st-XU6" id="jY3-gD-lpJ"/>
                         <outlet property="timeLimitLabel" destination="Dvd-5J-c4b" id="q1A-WT-Fat"/>
-                        <outlet property="timeLimitTextField" destination="SgK-LY-BFN" id="fWL-Zv-7Ny"/>
+                        <outlet property="timeLimitPicker" destination="PnP-oN-BYp" id="c65-f4-Lei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pK9-kH-20O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
