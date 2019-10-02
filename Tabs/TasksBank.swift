@@ -6,6 +6,7 @@ import Foundation
 protocol TaskBanking {
     func addTask(title: String, inMinutes time: Int)
     //func removeTask()
+    func printTasks()
 }
 
 class TaskBank: TaskBanking {
@@ -15,7 +16,13 @@ class TaskBank: TaskBanking {
     func addTask(title: String, inMinutes time: Int) {
         taskList.append(Task(title: title, time: time, count: nil, notes: nil))
     }
-
+    
+    func printTasks() {
+        for Task in taskList {
+            print("Task: \(Task.title), Time Limit: \(Task.time!)")
+        }
+    }
+    
     init() {
         taskList.append(Task(title: "Clean Living Room", time: 30, count: nil, notes: nil))
 

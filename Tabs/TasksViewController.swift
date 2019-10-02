@@ -24,7 +24,7 @@ class TasksViewController: UIViewController {
     
     // MARK: - Helper Functions
     
-    let allTasks = TaskBank()
+    var allTasks = TaskBank()
     let numberOfDetails = 2 // time limit & completion status
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class TasksViewController: UIViewController {
     }
     
     @objc func addTask() {
-        performSegue(withIdentifier: "addTaskSegue", sender: self)
+        performSegue(withIdentifier: "addTaskSegue", sender: allTasks)
     }
 
     func getDate() -> String {
@@ -137,6 +137,8 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Your ViewController is not of type AddTaskViewController")
                 return
             }
+            // pass allTasks Task array by reference hopefully
+            vc.allTasks = allTasks
         }
     }
     

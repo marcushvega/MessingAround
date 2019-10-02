@@ -4,7 +4,7 @@ import UIKit
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
-    var task: Task?
+    var allTasks = TaskBank()  // used to
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var timeLimitLabel: UILabel!
@@ -12,6 +12,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIButton!
     
     private var timeLimitPicker = UIDatePicker()
+    private var timeLimit: Int = 0
     
     let relativeFontConstant:CGFloat = 0.056
     
@@ -23,8 +24,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         // allows us to dismiss keyboard even if nothing was selected
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
-        
-        
 
         setupSubmitButton()
         setupTimeLimitTextField()
@@ -38,8 +37,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
-        let timeLeft:Int = Int(timeLimitPicker.countDownDuration)
-        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60))
+        timeLimit = Int(timeLimitPicker.countDownDuration)
+        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60))
         view.endEditing(true)
     }
     // MARK: - View objects
@@ -89,6 +88,18 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         submitButton.setTitleColor(UIColor.red, for: .selected)
     }
 
+    
+    // MARK: - Action Functions
+    
+    @IBAction func submitTaskToTaskList(_ sender: Any) {
+        if (taskTitleTextField.text != nil && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
+            allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
+        }
+        
+        allTasks.printTasks()
+    }
+    
+    
     /*
     // MARK: - Navigation
 
