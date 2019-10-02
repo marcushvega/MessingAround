@@ -10,13 +10,30 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeLimitLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var timeLimitPicker: UIDatePicker!
+    @IBOutlet weak var timeDisplayLabel: UILabel!
+    
+    private var datePicker = UIDatePicker()
+    
+    let relativeFontConstant:CGFloat = 0.056
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupSubmitButton()
         
+        datePicker = UIDatePicker()
+        datePicker.datePickerMode = .countDownTimer
+        
+        timeDisplayLabel.font = timeDisplayLabel.font.withSize(self.view.frame.height * relativeFontConstant)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
+        view.addGestureRecognizer(tapGesture)
+        
         taskTitleTextField.delegate = self
+    }
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     // MARK: - View objects
