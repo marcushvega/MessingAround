@@ -30,6 +30,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         taskTitleTextField.delegate = self
     }
     
+    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+        
+    }
+    
     // MARK: - Helper Functions
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
@@ -97,6 +101,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         }
         
         allTasks.printTasks()
+    }
+    
+    @IBAction func goBackToTasksVC(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToTaskVC", sender: self)
     }
     
     

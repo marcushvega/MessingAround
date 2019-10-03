@@ -136,6 +136,7 @@
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitTaskToTaskList:" destination="MSU-Zk-Kc7" eventType="touchUpInside" id="ibB-1a-MLZ"/>
+                                    <segue destination="zsd-2O-gFz" kind="unwind" identifier="unwindToTasksVC" unwindAction="unwindToTasksVCWithSegue:" id="DpG-Gp-JMd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wm1-0u-YMd">
@@ -173,6 +174,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pK9-kH-20O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zsd-2O-gFz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2752.5" y="-658.09859154929575"/>
         </scene>
