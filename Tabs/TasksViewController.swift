@@ -33,6 +33,8 @@ class TasksViewController: UIViewController {
         
         dateLabel.text = getDate()
         
+        print("viewDidLoad did do the runs")
+        
 //        navigationController?.navigationItem.title = "Add Task"
 //        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem()
     }
@@ -40,10 +42,29 @@ class TasksViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Task List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+        
+//        updateTableView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tasksTableView.reloadData()
+    }
+    
     
     @objc func addTask() {
         performSegue(withIdentifier: "addTaskSegue", sender: allTasks)
+    }
+    
+    func updateTableView() {
+        allTasks.printTasks()
+        print(allTasks.taskList.count - 1)
+        let timeCellIndexPath = IndexPath(row: 0, section: allTasks.taskList.count - 1)
+//        let completionCellIndexPath = IndexPath(row: 1, section: allTasks.taskList.count - 1)
+//        let startCellIndexPath = IndexPath(row: 2, section: allTasks.taskList.count - 1)
+
+        tasksTableView.beginUpdates()
+        tasksTableView.insertRows(at: [timeCellIndexPath], with: .automatic)
+        tasksTableView.endUpdates()
     }
 
     func getDate() -> String {
@@ -55,7 +76,10 @@ class TasksViewController: UIViewController {
         return dateFormatter.string(from: today)
     }
     
-    @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {}
+    // this method is called JUST BEFORE the segue actually happens
+    @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {
+        
+    }
 }
 
     // MARK: - extensions

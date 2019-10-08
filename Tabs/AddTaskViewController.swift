@@ -30,10 +30,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         taskTitleTextField.delegate = self
     }
     
-    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        
-    }
-    
     // MARK: - Helper Functions
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
@@ -100,7 +96,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
         }
         
-        allTasks.printTasks()
     }
     
     @IBAction func goBackToTasksVC(_ sender: Any) {
