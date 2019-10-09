@@ -32,18 +32,11 @@ class TasksViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         dateLabel.text = getDate()
-        
-        print("viewDidLoad did do the runs")
-        
-//        navigationController?.navigationItem.title = "Add Task"
-//        navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "Task List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
-        
-//        updateTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,18 +48,6 @@ class TasksViewController: UIViewController {
         performSegue(withIdentifier: "addTaskSegue", sender: allTasks)
     }
     
-    func updateTableView() {
-        allTasks.printTasks()
-        print(allTasks.taskList.count - 1)
-        let timeCellIndexPath = IndexPath(row: 0, section: allTasks.taskList.count - 1)
-//        let completionCellIndexPath = IndexPath(row: 1, section: allTasks.taskList.count - 1)
-//        let startCellIndexPath = IndexPath(row: 2, section: allTasks.taskList.count - 1)
-
-        tasksTableView.beginUpdates()
-        tasksTableView.insertRows(at: [timeCellIndexPath], with: .automatic)
-        tasksTableView.endUpdates()
-    }
-
     func getDate() -> String {
         let today = Date()
         let dateFormatter = DateFormatter()

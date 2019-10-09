@@ -11,7 +11,9 @@ class TimerViewController: UIViewController {
     var initialTime = 1800
     var timeLeft = 1800
     var timerIsPaused = true
-//    var task: Task?
+    
+    let playPauseImageConfig = UIImage.SymbolConfiguration(pointSize: 80, weight: .regular, scale: .large)
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,11 @@ class TimerViewController: UIViewController {
         playPauseBtn.layer.cornerRadius = 20
 //        playPauseBtn.layer.borderColor = ????
         playPauseBtn.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.8)
-        playPauseBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        // playPauseBtn starts out showing the "play" button
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
+        playPauseBtn.setImage(playImage, for: .normal)
+
     }
     
     func setupCancelButton() {
@@ -59,13 +65,18 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func playOrPause(_ sender: Any) {
+        let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: playPauseImageConfig)
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
+        
         // if timer is not running then start timer
         if (timerIsPaused) {
+            playPauseBtn.setImage(pauseImage, for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
             timerIsPaused = false
         }
         // if timer is running then pause timer
         else {
+            playPauseBtn.setImage(playImage, for: .normal)
             timer?.invalidate()
             timerIsPaused = true
         }
