@@ -16,11 +16,7 @@ class TasksViewController: UIViewController {
     }
     
     // MARK: - Selectors
-    @objc func handleDropDown() {
-        print("dropdown button")
-        
-        
-    }
+
     
     // MARK: - Helper Functions
     
@@ -173,6 +169,8 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
 
         return button
     }
+    
+    @objc func handleDropDown() {}
     
     
 }

@@ -43,18 +43,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     // MARK: - View objects
     
-    func setupTaskTitleLabel() {
-        
-    }
-    
-    func setuptaskTitleTextField() {
-    
-    }
-    
-    func setupTimeLimitLabel() {
-        
-    }
-    
     func setupTimeLimitTextField() {
         timeLimitTextField.font = timeLimitTextField.font?.withSize(self.view.frame.height * relativeFontConstant)
         

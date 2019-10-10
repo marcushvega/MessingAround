@@ -12,7 +12,8 @@ class TimerViewController: UIViewController {
     var timeLeft = 1800
     var timerIsPaused = true
     
-    let playPauseImageConfig = UIImage.SymbolConfiguration(pointSize: 80, weight: .regular, scale: .large)
+    let relativePointSizeConstant:CGFloat = 0.056
+
    
     
     override func viewDidLoad() {
@@ -34,13 +35,18 @@ class TimerViewController: UIViewController {
     }
 
     func setupPlayPauseButton() {
+        let relativeConstant = self.view.frame.height * relativePointSizeConstant / 2
+        let playPauseImageConfig = UIImage.SymbolConfiguration(pointSize: self.view.frame.height * relativePointSizeConstant, weight: .regular, scale: .large)
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
+        
+        
         playPauseBtn.layer.borderWidth = 2.5
         playPauseBtn.layer.cornerRadius = 20
 //        playPauseBtn.layer.borderColor = ????
         playPauseBtn.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.8)
+        playPauseBtn.imageEdgeInsets = UIEdgeInsets.init(top: relativeConstant / 2, left: relativeConstant, bottom: relativeConstant / 2, right: relativeConstant)
         
         // playPauseBtn starts out showing the "play" button
-        let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
         playPauseBtn.setImage(playImage, for: .normal)
 
     }
@@ -65,6 +71,7 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func playOrPause(_ sender: Any) {
+        let playPauseImageConfig = UIImage.SymbolConfiguration(pointSize: self.view.frame.height * relativePointSizeConstant, weight: .regular, scale: .large)
         let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: playPauseImageConfig)
         let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
         
