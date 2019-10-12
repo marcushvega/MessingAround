@@ -5,7 +5,6 @@ import CoreData
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
-    var allTasks = TaskBank()
     var taskItems: [NSManagedObject] = []
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
@@ -92,7 +91,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setupSubmitButton() {
-//        submitButton.layer.borderColor =
         submitButton.layer.borderWidth = 2.5
         submitButton.layer.cornerRadius = 20
         submitButton.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.6)
@@ -106,7 +104,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitTaskToTaskList(_ sender: Any) {
         if (taskTitleTextField.text != nil && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
             save(taskName: taskTitleTextField.text!, taskTime: timeLimit / 60)
-//            allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
         }
         else {
             print("Enter a Task Name.\nEnter a Time Limit for the task.")

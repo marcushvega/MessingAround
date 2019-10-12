@@ -12,12 +12,6 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var tasksTableView: UITableView!
     @IBOutlet weak var addTasksStackView: UIStackView!
     
-    enum completionStatus {
-        case complete
-        case incomplete
-    }
-    
-    var allTasks = TaskBank()
     let numberOfDetails = 2 // time limit & completion status
     
     // MARK: - ViewDidLoad
@@ -42,7 +36,7 @@ class TasksViewController: UIViewController {
     // MARK: - Helper Functions
     
     @objc func addTask() {
-        performSegue(withIdentifier: "addTaskSegue", sender: allTasks)
+        performSegue(withIdentifier: "addTaskSegue", sender: nil)
     }
     
     func getDate() -> String {
@@ -98,7 +92,6 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // assign text to the current cell in question
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskItemCell", for: indexPath)
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "TaskItemCell")
         cell.textLabel?.adjustsFontSizeToFitWidth = true
         cell.textLabel?.adjustsFontForContentSizeCategory = true
@@ -111,25 +104,19 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         if (indexPath.row == 0) {
             cell.textLabel?.text = "Time: "
             cell.detailTextLabel?.text = "\(task.value(forKeyPath: "time") ?? 22) minutes"
-//            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 22) minutes"
         }
+            // create completion cell at each row 1
         else if (indexPath.row == 1) {
-            
             let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CompletionItemCell")
-            
             completionCell.createCompletionCell()
-            
             return completionCell
         }
+            // create startButton cell at each row 2
         else if (indexPath.row == numberOfDetails) {
             let startButtonCell = StartButtonCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "startButtonCell")
-            
             startButtonCell.createStartButtonCell()
-            
             return startButtonCell
         }
-        
-        
         return cell
     }
     
@@ -141,7 +128,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
             
             // sender can apparently send an integer
             // sender sends time in minutes
-            performSegue(withIdentifier: "startButtonSegue", sender: allTasks.taskList[indexPath.section].time)
+            performSegue(withIdentifier: "startButtonSegue", sender: taskItems[indexPath.section].value(forKeyPath: "time") as? Int)
         }
     }
     
@@ -164,22 +151,18 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         vc.timeLeft *= 60
         }
         
-        else if (segue.identifier == "addTaskSegue") {
-            guard let vc = segue.destination as? AddTaskViewController else {
-                print("Your ViewController is not of type AddTaskViewController")
-                return
-            }
-            // pass allTasks Task array by reference hopefully
-            vc.allTasks = allTasks
-        }
+//        else if (segue.identifier == "addTaskSegue") {
+//            guard let vc = segue.destination as? AddTaskViewController else {
+//                print("Your ViewController is not of type AddTaskViewController")
+//                return
+//            }
+//        }
     }
     
     // one solution is to have a tableview section with an embedded button
     //   clicking the button will cause the section to display its cells
     func numberOfSections(in tableView: UITableView) -> Int {
         return taskItems.count
-//        return allTasks.taskList.count
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
