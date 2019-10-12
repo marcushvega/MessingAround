@@ -106,12 +106,12 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
         
-//        let task = taskItems[indexPath.section]
+        let task = taskItems[indexPath.section]
         
         if (indexPath.row == 0) {
             cell.textLabel?.text = "Time: "
-//            cell.detailTextLabel?.text = "\(task.value(forKey: "time") ?? 22) minutes"
-            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 22) minutes"
+            cell.detailTextLabel?.text = "\(task.value(forKeyPath: "time") ?? 22) minutes"
+//            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 22) minutes"
         }
         else if (indexPath.row == 1) {
             
@@ -177,8 +177,8 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // one solution is to have a tableview section with an embedded button
     //   clicking the button will cause the section to display its cells
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return taskItems.count
-        return allTasks.taskList.count
+        return taskItems.count
+//        return allTasks.taskList.count
         
     }
     
@@ -188,14 +188,14 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // step 1:
-//        let task = taskItems[section]
+        let task = taskItems[section]
         
         // step 2: create the button
         let button = UIButton(type: .system)
         
         // step 3: give button details
-//        button.setTitle(task.value(forKey: "title") as? String, for: .normal)
-        button.setTitle(allTasks.taskList[section].title, for: .normal)
+        button.setTitle(task.value(forKeyPath: "title") as? String, for: .normal)
+//        button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
         button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)

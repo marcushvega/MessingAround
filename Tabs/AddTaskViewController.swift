@@ -105,7 +105,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func submitTaskToTaskList(_ sender: Any) {
         if (taskTitleTextField.text != nil && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
-            allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
+            save(taskName: taskTitleTextField.text!, taskTime: timeLimit / 60)
+//            allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
         }
         else {
             print("Enter a Task Name.\nEnter a Time Limit for the task.")
@@ -113,14 +114,13 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func goBackToTasksVC(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToTaskVC", sender: self)
-    }
     
+    // MARK: - Navigation
+     @IBAction func goBackToTasksVC(_ sender: Any) {
+         performSegue(withIdentifier: "unwindToTaskVC", sender: self)
+     }
     
     /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
