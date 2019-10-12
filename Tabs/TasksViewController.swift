@@ -1,11 +1,13 @@
 //__FILENAME__  was created on __DATE__
 
 import UIKit
+import CoreData
 
 class TasksViewController: UIViewController {
 
     // MARK: - Properties
     
+    var taskItems: [NSManagedObject] = []
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tasksTableView: UITableView!
     @IBOutlet weak var addTasksStackView: UIStackView!
@@ -15,19 +17,16 @@ class TasksViewController: UIViewController {
         case incomplete
     }
     
-    // MARK: - Selectors
-
-    
-    // MARK: - Helper Functions
-    
     var allTasks = TaskBank()
     let numberOfDetails = 2 // time limit & completion status
     
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         dateLabel.text = getDate()
+        pullSavedData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +39,8 @@ class TasksViewController: UIViewController {
     }
     
     
+    // MARK: - Helper Functions
+    
     @objc func addTask() {
         performSegue(withIdentifier: "addTaskSegue", sender: allTasks)
     }
@@ -51,6 +52,31 @@ class TasksViewController: UIViewController {
         dateFormatter.dateFormat = "MMMM dd, yyyy"
         
         return dateFormatter.string(from: today)
+    }
+    
+    func pullSavedData() {
+        // pull up the application delegate and grab a reference to it
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        // previously-pulled app delegate allows me to reference its persistence container
+        //    its persistence container contains NSManagedObjectContext viewContext
+        //    viewContext is needed to pull Core Data via an NSFetchRequest
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // NSFetchRequests have several qualifiers used to refine the set of results returned
+        // NSEntityName is one of the qualifiers used to refine the set of results returned
+        // create fetch request for entity TaskItem
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TaskItem")
+        
+        do {
+            // give request to managedContext for it to fetch
+            taskItems = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
     }
     
     // this method is called JUST BEFORE the segue actually happens
@@ -80,9 +106,12 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
         
+//        let task = taskItems[indexPath.section]
+        
         if (indexPath.row == 0) {
             cell.textLabel?.text = "Time: "
-            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 30) minutes"
+//            cell.detailTextLabel?.text = "\(task.value(forKey: "time") ?? 22) minutes"
+            cell.detailTextLabel?.text = "\(allTasks.taskList[indexPath.section].time ?? 22) minutes"
         }
         else if (indexPath.row == 1) {
             
@@ -148,6 +177,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     // one solution is to have a tableview section with an embedded button
     //   clicking the button will cause the section to display its cells
     func numberOfSections(in tableView: UITableView) -> Int {
+//        return taskItems.count
         return allTasks.taskList.count
         
     }
@@ -157,11 +187,14 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // step 1:
+//        let task = taskItems[section]
         
-        // step 1: create the button
+        // step 2: create the button
         let button = UIButton(type: .system)
         
-        // step 2: give button details
+        // step 3: give button details
+//        button.setTitle(task.value(forKey: "title") as? String, for: .normal)
         button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)

@@ -1,10 +1,12 @@
 //__FILENAME__  was created on __DATE__
 
 import UIKit
+import CoreData
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
-    var allTasks = TaskBank()  // used to
+    var allTasks = TaskBank()
+    var taskItems: [NSManagedObject] = []
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var timeLimitLabel: UILabel!
@@ -21,7 +23,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
         setupTimeLimitPicker()
         
-        // allows us to dismiss keyboard even if nothing was selected
+        // allows me to dismiss keyboard even if nothing was selected
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
 
@@ -40,6 +42,28 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         timeLimit = Int(timeLimitPicker.countDownDuration)
         timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60))
         view.endEditing(true)
+    }
+    
+    func save(taskName: String, taskTime: Int) {
+        // create app delegate so we can later get the viewContext
+        //   which in turn allows us to get stored info from some entity
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "TaskItem", in: managedContext)!
+        let taskItem = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        taskItem.setValue(taskName, forKey: "title")
+        taskItem.setValue(taskTime, forKey: "time")
+        
+        do {
+            try managedContext.save()
+            taskItems.append(taskItem)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     // MARK: - View objects
     
@@ -82,6 +106,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitTaskToTaskList(_ sender: Any) {
         if (taskTitleTextField.text != nil && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
             allTasks.addTask(title: taskTitleTextField.text ?? "", inMinutes: timeLimit / 60)
+        }
+        else {
+            print("Enter a Task Name.\nEnter a Time Limit for the task.")
         }
         
     }
