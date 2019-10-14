@@ -28,6 +28,13 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ppd-bf-3eG" id="iPs-KW-xnb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN7-oV-Zsl">
+                                                    <rect key="frame" x="285" y="10" width="20" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="trash" catalog="system"/>
+                                                </button>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.91802495718002319" green="0.56136178970336914" blue="0.54321545362472534" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
@@ -250,5 +257,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
 </document>

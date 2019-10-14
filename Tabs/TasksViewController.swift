@@ -10,7 +10,6 @@ class TasksViewController: UIViewController {
     var taskItems: [NSManagedObject] = []
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tasksTableView: UITableView!
-    @IBOutlet weak var addTasksStackView: UIStackView!
     
     let numberOfDetails = 2 // time limit & completion status
     
@@ -31,7 +30,7 @@ class TasksViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         pullSavedData()
         self.tasksTableView.reloadData()
-        print("viewDidAppear is run")
+        
     }
     
     
@@ -79,6 +78,26 @@ class TasksViewController: UIViewController {
     @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {
         
     }
+    
+    @IBAction func deleteTask(taskName: String, taskTime: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "TaskItem", in: managedContext)!
+        let taskItem = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        taskItem.setValue(taskName, forKey: "title")
+        taskItem.setValue(taskTime, forKey: "time")
+        
+        // delete said task
+        managedContext.delete(taskItem)
+        
+//        taskItems.remove(at: <#T##Int#>)
+
+    }
+    
 }
 
     // MARK: - extensions
@@ -152,17 +171,8 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         vc.timeLeft = sender as! Int
         vc.timeLeft *= 60
         }
-        
-//        else if (segue.identifier == "addTaskSegue") {
-//            guard let vc = segue.destination as? AddTaskViewController else {
-//                print("Your ViewController is not of type AddTaskViewController")
-//                return
-//            }
-//        }
     }
-    
-    // one solution is to have a tableview section with an embedded button
-    //   clicking the button will cause the section to display its cells
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return taskItems.count
     }
@@ -172,19 +182,23 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // step 1:
+        
         let task = taskItems[section]
-        
-        // step 2: create the button
         let button = UIButton(type: .system)
+//        let trashImage = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(pointSize: self.view.frame.height * 0.028, weight: .regular, scale: .large))
         
-        // step 3: give button details
         button.setTitle(task.value(forKeyPath: "title") as? String, for: .normal)
-//        button.setTitle(allTasks.taskList[section].title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
         button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)
-
+        
+//        let trashImageView: UIImageView = UIImageView.init(image: trashImage)
+//        trashImageView =
+//        button.addSubview(customView)
+        
+//        customView = MyCustomView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+//        self.view.addSubview(customView)
+        
         return button
     }
     
