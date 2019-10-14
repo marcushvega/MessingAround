@@ -29,7 +29,9 @@ class TasksViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        pullSavedData()
         self.tasksTableView.reloadData()
+        print("viewDidAppear is run")
     }
     
     
