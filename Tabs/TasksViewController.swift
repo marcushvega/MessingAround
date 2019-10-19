@@ -19,6 +19,7 @@ class TasksViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         dateLabel.text = getDate()
+        tasksTableView.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 160/255, green: 165/255, blue: 247/255, alpha: 1))
         pullSavedData()
     }
     
@@ -172,13 +173,6 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
         button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)
-        
-//        let trashImageView: UIImageView = UIImageView.init(image: trashImage)
-//        trashImageView =
-//        button.addSubview(customView)
-        
-//        customView = MyCustomView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-//        self.view.addSubview(customView)
         
         return button
     }

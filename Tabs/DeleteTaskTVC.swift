@@ -9,36 +9,59 @@ class DeleteTaskTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pullSavedData()
+        tableView.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 160/255, green: 165/255, blue: 247/255, alpha: 1))
+        tableView.rowHeight = 50
 
-        self.clearsSelectionOnViewWillAppear = false
+//        self.clearsSelectionOnViewWillAppear = false
     }
 
     // MARK: - Table view data source
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return taskList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "aTaskCell", for: indexPath)
+        let task = taskList[indexPath.row]
         
-        cell.textLabel?.text = "THIS IS THE TITLE FOR row \(indexPath.row)"
-        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        cell.textLabel?.text = "\(task.value(forKeyPath: "title") as! String)"
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 233/255, green: 235/255, blue: 152/255, alpha: 0.5))
         cell.accessoryType = .none
         
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        tableView.deselectRow(at: indexPath, animated: true)
-    //
-    //        // place checkmark on row if row selected had no checkmark
-    //        if ()
-    //        // remove checkmark from row if row selected had a checkmark
-    //    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            if (cell.accessoryType == UITableViewCell.AccessoryType.none) {
+                cell.accessoryType = .checkmark
+            }
+            else {
+                cell.accessoryType = UITableViewCell.AccessoryType.none
+            }
+        }
+    }
+    
+    // MARK: - Pulling data for CoreData methods
+        func pullSavedData() {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+
+            let managedContext = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TaskItem")
+    
+            do {
+                taskList = try managedContext.fetch(fetchRequest)
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+    
+        }
         
     
     //    override func viewDidAppear(_ animated: Bool) {
@@ -47,30 +70,7 @@ class DeleteTaskTVC: UITableViewController {
     //        print(pullSavedData())
     //    }
         
-    //    func pullSavedData() {
-    //        // pull up the application delegate and grab a reference to it
-    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-    //            return
-    //        }
-    //
-    //        // previously-pulled app delegate allows me to reference its persistence container
-    //        //    its persistence container contains NSManagedObjectContext viewContext
-    //        //    viewContext is needed to pull Core Data via an NSFetchRequest
-    //        let managedContext = appDelegate.persistentContainer.viewContext
-    //
-    //        // NSFetchRequests have several qualifiers used to refine the set of results returned
-    //        // NSEntityName is one of the qualifiers used to refine the set of results returned
-    //        // create fetch request for entity TaskItem
-    //        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TaskItem")
-    //
-    //        do {
-    //            // give request to managedContext for it to fetch
-    //            taskItems = try managedContext.fetch(fetchRequest)
-    //        } catch let error as NSError {
-    //            print("Could not fetch. \(error), \(error.userInfo)")
-    //        }
-    //
-    //    }
+    
         
     //    @IBAction func deleteTask(taskName: String, taskTime: Int) {
     //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
