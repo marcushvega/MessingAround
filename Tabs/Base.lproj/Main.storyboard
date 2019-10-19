@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CFh-B3-nmr">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,13 +27,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ppd-bf-3eG" id="iPs-KW-xnb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lN7-oV-Zsl">
-                                                    <rect key="frame" x="285" y="10" width="20" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="trash" catalog="system"/>
-                                                </button>
-                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.91802495718002319" green="0.56136178970336914" blue="0.54321545362472534" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
@@ -94,6 +86,7 @@
                         <outlet property="tasksTableView" destination="lbK-uS-9jn" id="tVP-fx-Wyj"/>
                         <segue destination="UCB-M3-QGK" kind="show" identifier="startButtonSegue" id="qtT-Gu-ILA"/>
                         <segue destination="MSU-Zk-Kc7" kind="show" identifier="addTaskSegue" id="KZC-Y7-nQn"/>
+                        <segue destination="5NQ-uw-X4d" kind="show" identifier="deleteTaskSegue" id="S9h-WS-Hk6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -185,6 +178,35 @@
             </objects>
             <point key="canvasLocation" x="2752.5" y="-658.09859154929575"/>
         </scene>
+        <!--Delete TaskTVC-->
+        <scene sceneID="4SP-4H-fpN">
+            <objects>
+                <tableViewController id="5NQ-uw-X4d" customClass="DeleteTaskTVC" customModule="Tabs" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="D9h-xX-ipG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="aTaskCell" id="swa-dJ-F2b">
+                                <rect key="frame" x="0.0" y="28" width="320" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="swa-dJ-F2b" id="u3W-9R-KYe">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5NQ-uw-X4d" id="qLm-zD-Xnu"/>
+                            <outlet property="delegate" destination="5NQ-uw-X4d" id="222-gB-wcE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="5x9-4p-lDi"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5bZ-eP-LOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3784" y="-301"/>
+        </scene>
         <!--Timer View Controller-->
         <scene sceneID="BAT-Gk-cVq">
             <objects>
@@ -257,6 +279,5 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="trash" catalog="system" width="60" height="64"/>
     </resources>
 </document>

@@ -23,29 +23,31 @@ class TasksViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // show two buttons and a title on the navigation bar
         navigationItem.title = "Task List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTaskFromList))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         pullSavedData()
         self.tasksTableView.reloadData()
-        
     }
     
     
     // MARK: - Helper Functions
-    
     @objc func addTask() {
         performSegue(withIdentifier: "addTaskSegue", sender: nil)
+    }
+    
+    @objc func deleteTaskFromList() {
+        performSegue(withIdentifier: "deleteTaskSegue", sender: nil)
     }
     
     func getDate() -> String {
         let today = Date()
         let dateFormatter = DateFormatter()
-        
         dateFormatter.dateFormat = "MMMM dd, yyyy"
-        
         return dateFormatter.string(from: today)
     }
     
@@ -75,29 +77,7 @@ class TasksViewController: UIViewController {
     }
     
     // this method is called JUST BEFORE the segue actually happens
-    @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func deleteTask(taskName: String, taskTime: Int) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "TaskItem", in: managedContext)!
-        let taskItem = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        taskItem.setValue(taskName, forKey: "title")
-        taskItem.setValue(taskTime, forKey: "time")
-        
-        // delete said task
-        managedContext.delete(taskItem)
-        
-//        taskItems.remove(at: <#T##Int#>)
-
-    }
-    
+    @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {}
 }
 
     // MARK: - extensions
@@ -188,6 +168,7 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
 //        let trashImage = UIImage(systemName: "trash", withConfiguration: UIImage.SymbolConfiguration(pointSize: self.view.frame.height * 0.028, weight: .regular, scale: .large))
         
         button.setTitle(task.value(forKeyPath: "title") as? String, for: .normal)
+        button.largeContentTitle = "\(task.value(forKeyPath: "title") as! String)"
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
         button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)

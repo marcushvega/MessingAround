@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F8B2E48231AFD8100807A84 /* CompletionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B2E47231AFD8100807A84 /* CompletionItemCell.swift */; };
 		4F8B2E4F231D985B00807A84 /* StartButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B2E4E231D985B00807A84 /* StartButtonCell.swift */; };
+		4F8D5D3B235B523900416CC9 /* DeleteTaskTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8D5D3A235B523800416CC9 /* DeleteTaskTVC.swift */; };
 		4F9A404F233D3A1F0008FD5B /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */; };
 		4F9C9603234F9B810020E333 /* Tabs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C9601234F9B810020E333 /* Tabs.xcdatamodeld */; };
 		4FD2076322F3E89C00866B1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2076222F3E89C00866B1B /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		4F8B2E47231AFD8100807A84 /* CompletionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionItemCell.swift; sourceTree = "<group>"; };
 		4F8B2E4E231D985B00807A84 /* StartButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonCell.swift; sourceTree = "<group>"; };
+		4F8D5D3A235B523800416CC9 /* DeleteTaskTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTaskTVC.swift; sourceTree = "<group>"; };
 		4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		4F9C9602234F9B810020E333 /* Tabs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tabs.xcdatamodel; sourceTree = "<group>"; };
 		4FD2075F22F3E89C00866B1B /* Tabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,7 @@
 				4FD2077922F3EC0E00866B1B /* Task.swift */,
 				4FD2077B22F3EC1A00866B1B /* TasksBank.swift */,
 				4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */,
+				4F8D5D3A235B523800416CC9 /* DeleteTaskTVC.swift */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				4F8B2E4F231D985B00807A84 /* StartButtonCell.swift in Sources */,
 				4FD2077A22F3EC0E00866B1B /* Task.swift in Sources */,
 				4FD2077C22F3EC1A00866B1B /* TasksBank.swift in Sources */,
+				4F8D5D3B235B523900416CC9 /* DeleteTaskTVC.swift in Sources */,
 				4F8B2E48231AFD8100807A84 /* CompletionItemCell.swift in Sources */,
 				4FD2076722F3E89C00866B1B /* TimerViewController.swift in Sources */,
 				4F9A404F233D3A1F0008FD5B /* AddTaskViewController.swift in Sources */,
