@@ -201,11 +201,26 @@
                             <outlet property="delegate" destination="5NQ-uw-X4d" id="222-gB-wcE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5x9-4p-lDi"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5x9-4p-lDi">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w2c-l6-wym">
+                            <rect key="frame" x="90" y="7" width="140" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Delete"/>
+                            <connections>
+                                <action selector="deleteTask:" destination="5NQ-uw-X4d" eventType="touchUpInside" id="nMI-X8-fsa"/>
+                            </connections>
+                        </button>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="deleteButton" destination="w2c-l6-wym" id="3mK-hi-0lV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5bZ-eP-LOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3784" y="-301"/>
+            <point key="canvasLocation" x="3783.75" y="-301.05633802816902"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="BAT-Gk-cVq">
@@ -234,7 +249,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spa-wv-xaE">
-                                <rect key="frame" x="70" y="443" width="180" height="46"/>
+                                <rect key="frame" x="70" y="442" width="180" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Cancel"/>
