@@ -9,25 +9,24 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
     @IBOutlet weak var timeLimitLabel: UILabel!
-    @IBOutlet weak var timeLimitTextField: UITextField!
+    @IBOutlet weak var timeLimitTextField: TimeLimitTextField!
     @IBOutlet weak var submitButton: UIButton!
     
-    private var timeLimitPicker = UIDatePicker()
+//    private var timeLimitPicker = UIDatePicker()
     private var timeLimit: Int = 0
     
     let relativeFontConstant:CGFloat = 0.056
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupTimeLimitPicker()
         
-        // allows me to dismiss keyboard even if nothing was selected
+        // allows user to dismiss keyboard even if nothing was selected
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
 
+        timeLimitTextField.setup()
         setupSubmitButton()
-        setupTimeLimitTextField()
+        setFontSize()
         taskTitleTextField.delegate = self
     }
     
@@ -37,15 +36,13 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
-        timeLimit = Int(timeLimitPicker.countDownDuration)
-        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60))
-        view.endEditing(true)
-    }
+//    @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
+//        timeLimit = Int(timeLimitPicker.countDownDuration)
+//        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60))
+//        view.endEditing(true)
+//    }
     
     func save(taskName: String, taskTime: Int) {
-        // create app delegate so we can later get the viewContext
-        //   which in turn allows us to get stored info from some entity
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -66,18 +63,19 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     // MARK: - View objects
     
-    func setupTimeLimitTextField() {
+    func setFontSize() {
         timeLimitTextField.font = timeLimitTextField.font?.withSize(self.view.frame.height * relativeFontConstant)
+        taskTitleTextField.font = taskTitleTextField.font?.withSize(self.view.frame.height * relativeFontConstant)
         
-         timeLimitTextField.inputView = timeLimitPicker
+//         timeLimitTextField.inputView = timeLimitPicker
     }
     
-    func setupTimeLimitPicker() {
-        timeLimitPicker = UIDatePicker()
-        timeLimitPicker.datePickerMode = .countDownTimer
-        timeLimitPicker.minuteInterval = 5
-        timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
-    }
+//    func setupTimeLimitPicker() {
+//        timeLimitPicker = UIDatePicker()
+//        timeLimitPicker.datePickerMode = .countDownTimer
+//        timeLimitPicker.minuteInterval = 5
+//        timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
+//    }
     
     // restrict number of characters
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -116,13 +114,4 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
      @IBAction func goBackToTasksVC(_ sender: Any) {
          performSegue(withIdentifier: "unwindToTaskVC", sender: self)
      }
-    
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
