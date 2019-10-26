@@ -20,6 +20,11 @@ class DeleteTaskTVC: UITableViewController {
         tableView.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 160/255, green: 165/255, blue: 247/255, alpha: 1))
         tableView.rowHeight = 50
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = "Swipe Row Left to Delete"
+        navigationItem.largeTitleDisplayMode = .automatic
+    }
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
