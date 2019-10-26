@@ -6,25 +6,15 @@ import CoreData
 class DeleteTaskTVC: UITableViewController {
 
     var taskList: [NSManagedObject] = []
-    @IBOutlet weak var deleteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pullSavedData()
-        setupDeleteButton()
         setupTableView()
 //        self.clearsSelectionOnViewWillAppear = false
     }
     
     // MARK: - Setup UI Elements
-    func setupDeleteButton() {
-        deleteButton.setTitle("Delete", for: .normal)
-        deleteButton.layer.borderWidth = 2.5
-        deleteButton.layer.cornerRadius = 10
-        deleteButton.backgroundColor = UIColor.init(red: 214/255, green: 26/255, blue: 60/255, alpha: 0.6)
-        deleteButton.setTitleColor(UIColor.white, for: .normal)
-//        deleteButton.setTitleColor(UIColor.red, for: .selected)
-    }
     
     func setupTableView() {
         tableView.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 160/255, green: 165/255, blue: 247/255, alpha: 1))
@@ -69,13 +59,21 @@ class DeleteTaskTVC: UITableViewController {
         return true
     }
     
-    // DO I WANT TO USE .cellForRowAt IF I AM TRYING TO DELETE A SECTION?
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath as IndexPath) else {return}
+        
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            print("We now attempt to delete a cell with its editingStyle.delete button")
-            deleteSavedData(taskName: cell.textLabel?.text as! String)
+            let itemToDelete = taskList[indexPath.row]
+            let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            managedContext.delete(itemToDelete)
+            taskList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Error: \(error)")
+            }
         }
     }
         
@@ -95,17 +93,6 @@ class DeleteTaskTVC: UITableViewController {
         }
     }
     
-    func deleteSavedData(taskName: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "TaskItem", in: managedContext)!
-        let taskItem = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        taskItem.setValue(taskName, forKey: "title")
-        
-        // delete said task
-        managedContext.delete(taskItem)
-    }
 }
 
   
