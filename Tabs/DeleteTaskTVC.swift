@@ -46,17 +46,6 @@ class DeleteTaskTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
-            if (cell.accessoryType == UITableViewCell.AccessoryType.none) {
-                cell.accessoryType = .checkmark
-                cell.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 200/255, green: 161/255, blue: 247/255, alpha: 0.8))
-            }
-            else {
-                cell.accessoryType = UITableViewCell.AccessoryType.none
-                cell.backgroundColor = UIColor(cgColor: CGColor.init(srgbRed: 160/255, green: 165/255, blue: 247/255, alpha: 1))
-            }
-        }
     }
     
     // MARK: - Code for Deleting a Section from the table

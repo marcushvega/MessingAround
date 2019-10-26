@@ -18,8 +18,6 @@
 		4FD2076A22F3E89C00866B1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2076822F3E89C00866B1B /* Main.storyboard */; };
 		4FD2076C22F3E89E00866B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2076B22F3E89E00866B1B /* Assets.xcassets */; };
 		4FD2076F22F3E89E00866B1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2076D22F3E89E00866B1B /* LaunchScreen.storyboard */; };
-		4FD2077A22F3EC0E00866B1B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2077922F3EC0E00866B1B /* Task.swift */; };
-		4FD2077C22F3EC1A00866B1B /* TasksBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2077B22F3EC1A00866B1B /* TasksBank.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +34,6 @@
 		4FD2076B22F3E89E00866B1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FD2076E22F3E89E00866B1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FD2077022F3E89E00866B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FD2077922F3EC0E00866B1B /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		4FD2077B22F3EC1A00866B1B /* TasksBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksBank.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +84,6 @@
 				4FD2076B22F3E89E00866B1B /* Assets.xcassets */,
 				4FD2076D22F3E89E00866B1B /* LaunchScreen.storyboard */,
 				4FD2077022F3E89E00866B1B /* Info.plist */,
-				4FD2077922F3EC0E00866B1B /* Task.swift */,
-				4FD2077B22F3EC1A00866B1B /* TasksBank.swift */,
 				4F9A404E233D3A1F0008FD5B /* AddTaskViewController.swift */,
 				4F8D5D3A235B523800416CC9 /* DeleteTaskTVC.swift */,
 			);
@@ -169,8 +163,6 @@
 			files = (
 				4F9C9603234F9B810020E333 /* Tabs.xcdatamodeld in Sources */,
 				4F8B2E4F231D985B00807A84 /* StartButtonCell.swift in Sources */,
-				4FD2077A22F3EC0E00866B1B /* Task.swift in Sources */,
-				4FD2077C22F3EC1A00866B1B /* TasksBank.swift in Sources */,
 				4F8D5D3B235B523900416CC9 /* DeleteTaskTVC.swift in Sources */,
 				4F8B2E48231AFD8100807A84 /* CompletionItemCell.swift in Sources */,
 				4FD2076722F3E89C00866B1B /* TimerViewController.swift in Sources */,
