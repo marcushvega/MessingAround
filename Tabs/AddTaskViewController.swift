@@ -24,10 +24,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
 
-        timeLimitTextField.setup()
         setupSubmitButton()
         setFontSize()
-        taskTitleTextField.delegate = self
+        setupTaskTitleTextField()
     }
     
     // MARK: - Helper Functions
@@ -70,6 +69,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
 //         timeLimitTextField.inputView = timeLimitPicker
     }
     
+    func setupTaskTitleTextField() {
+        taskTitleTextField.returnKeyType = .done
+        taskTitleTextField.delegate = self
+    }
+    
 //    func setupTimeLimitPicker() {
 //        timeLimitPicker = UIDatePicker()
 //        timeLimitPicker.datePickerMode = .countDownTimer
@@ -79,10 +83,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     
     // restrict number of characters
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         let currentText = textField.text ?? ""
-        
         guard let stringRange = Range(range, in: currentText) else {return false}
-        
         let newText = currentText.replacingCharacters(in: stringRange, with: string)
         
         return newText.count <= 25
@@ -107,6 +110,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             print("Enter a Task Name.\nEnter a Time Limit for the task.")
         }
         
+    }
+    
+    // Done button was clicked
+    @IBAction func primaryActionTriggered(_ sender: Any) {
+        view.endEditing(true)
     }
     
     

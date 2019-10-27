@@ -4,10 +4,6 @@ import UIKit
 
 class TimeLimitTextField: UITextField {
     
-    func setup() {
-        self.keyboardType = .numberPad
-    }
-    
     // restrict set of characters allowed in text field to allow only numbers
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
