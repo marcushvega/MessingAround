@@ -81,7 +81,7 @@ class TasksViewController: UIViewController {
     @IBAction func unwindToTasksVC(segue: UIStoryboardSegue) {}
 }
 
-    // MARK: - extensions
+    // MARK: - Extensions
 extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
     
     // TableView DataSource method

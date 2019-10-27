@@ -12,7 +12,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeLimitTextField: TimeLimitTextField!
     @IBOutlet weak var submitButton: UIButton!
     
-//    private var timeLimitPicker = UIDatePicker()
+    private var timeLimitPicker = UIDatePicker()
     private var timeLimit: Int = 0
     
     let relativeFontConstant:CGFloat = 0.056
@@ -24,9 +24,10 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
 
+        setupTimeLimitPicker()
         setupSubmitButton()
         setFontSize()
-        setupTaskTitleTextField()
+        setupTextFields()
     }
     
     // MARK: - Helper Functions
@@ -35,11 +36,13 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-//    @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
-//        timeLimit = Int(timeLimitPicker.countDownDuration)
-//        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60))
+    @objc func doneButtonTapped() {view.endEditing(true)}
+    
+    @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
+        timeLimit = Int(timeLimitPicker.countDownDuration)
+        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60), 0)
 //        view.endEditing(true)
-//    }
+    }
     
     func save(taskName: String, taskTime: Int) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -69,17 +72,26 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
 //         timeLimitTextField.inputView = timeLimitPicker
     }
     
-    func setupTaskTitleTextField() {
+    func setupTextFields() {
         taskTitleTextField.returnKeyType = .done
         taskTitleTextField.delegate = self
+        
+        // Add done button to toolbar
+        let toolbar = UIToolbar()
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        toolbar.items = [doneButton]
+        toolbar.sizeToFit()
+        
+        timeLimitTextField.inputView = timeLimitPicker
+        timeLimitTextField.inputAccessoryView = toolbar
     }
     
-//    func setupTimeLimitPicker() {
-//        timeLimitPicker = UIDatePicker()
-//        timeLimitPicker.datePickerMode = .countDownTimer
-//        timeLimitPicker.minuteInterval = 5
-//        timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
-//    }
+    func setupTimeLimitPicker() {
+        timeLimitPicker = UIDatePicker()
+        timeLimitPicker.datePickerMode = .countDownTimer
+        timeLimitPicker.minuteInterval = 5
+        timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
+    }
     
     // restrict number of characters
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

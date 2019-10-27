@@ -14,16 +14,12 @@ class TimerViewController: UIViewController {
     
     let relativePointSizeConstant:CGFloat = 0.056
 
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTimerLabel()
         setupPlayPauseButton()
         setupCancelButton()
-        
-        
     }
     
     func setupTimerLabel() {
