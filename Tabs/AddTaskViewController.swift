@@ -33,6 +33,11 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Helper Functions
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        if (taskTitleTextField.text != nil && taskTitleTextField.text?.isEmpty == false && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
+            submitButton.isEnabled = true
+            submitButton.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.6)
+        }
+        
         view.endEditing(true)
     }
     
@@ -106,9 +111,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     func setupSubmitButton() {
         submitButton.layer.borderWidth = 2.5
         submitButton.layer.cornerRadius = 20
-        submitButton.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.6)
+        submitButton.isEnabled = false
+
+        submitButton.backgroundColor = UIColor.init(red: 176/255, green: 176/255, blue: 176/255, alpha: 0.6)
+        
         submitButton.setTitleColor(UIColor.white, for: .normal)
-        submitButton.setTitleColor(UIColor.red, for: .selected)
+        submitButton.setTitleColor(UIColor.red, for: .disabled)
     }
 
     
@@ -118,10 +126,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         if (taskTitleTextField.text != nil && timeLimitTextField.text != nil && timeLimitTextField.text?.isEmpty == false) {
             save(taskName: taskTitleTextField.text!, taskTime: timeLimit / 60)
         }
-        else {
-            print("Enter a Task Name.\nEnter a Time Limit for the task.")
-        }
-        
     }
     
     // Done button was clicked
@@ -132,6 +136,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Navigation
      @IBAction func goBackToTasksVC(_ sender: Any) {
-         performSegue(withIdentifier: "unwindToTaskVC", sender: self)
+        performSegue(withIdentifier: "unwindToTaskVC", sender: self)
      }
 }
+

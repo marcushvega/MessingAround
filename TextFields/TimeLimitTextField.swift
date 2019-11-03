@@ -10,4 +10,13 @@ class TimeLimitTextField: UITextField {
         let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
         return string.rangeOfCharacter(from: invalidCharacters) == nil
     }
+    
+    // disable user's ability to paste text into TimeLimitTextField
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if (action == #selector(UIResponderStandardEditActions.paste(_:))){
+            return false
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+    
 }
