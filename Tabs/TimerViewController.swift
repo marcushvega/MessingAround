@@ -1,6 +1,7 @@
 //__FILENAME__  was created on __DATE__
 
 import UIKit
+import AudioToolbox
 
 class TimerViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
@@ -58,9 +59,18 @@ class TimerViewController: UIViewController {
         timeLeft -= 1
         
         // creates timer text for hh:mm:ss
-        timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
-        
-        if (timeLeft <= 0 || timerIsPaused) {
+        if (timeLeft >= 0) {
+            timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))
+        }
+        // bird chirping sounds starts when timer reaches 0
+        else if (timeLeft < 0 && timeLeft > -20) {
+            AudioServicesPlaySystemSound(SystemSoundID(1016))
+            // if timer has reached 0 (zero)
+            playPauseBtn.setImage(nil, for: .normal)
+            playPauseBtn.setTitle("Completed", for: .normal)
+            
+        }
+        else if (timeLeft < -20 || timerIsPaused) {
             timer?.invalidate()
             timer = nil
         }
@@ -71,8 +81,12 @@ class TimerViewController: UIViewController {
         let pauseImage = UIImage(systemName: "pause.fill", withConfiguration: playPauseImageConfig)
         let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
         
+        // if task timer has expired
+        if (playPauseBtn.titleLabel?.text == "Completed") {
+            // do nothing
+        }
         // if timer is not running then start timer
-        if (timerIsPaused) {
+        else if (timerIsPaused) {
             playPauseBtn.setImage(pauseImage, for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
             timerIsPaused = false
@@ -86,9 +100,16 @@ class TimerViewController: UIViewController {
     }
     
     @IBAction func cancelTimer(_ sender: Any) {
+        let playPauseImageConfig = UIImage.SymbolConfiguration(pointSize: self.view.frame.height * relativePointSizeConstant, weight: .regular, scale: .large)
+        let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
+        
         timer?.invalidate()    // cancels timer
         timer = nil
-        timeLeft = initialTime       // resets time
+        timeLeft = 5           // resets time
+        //timeLeft = initialTime
+        
+        playPauseBtn.setTitle(nil, for: .normal)
+        playPauseBtn.setImage(playImage, for: .normal)
         
         // resets time text
         timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))

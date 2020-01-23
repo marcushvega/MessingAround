@@ -2,9 +2,23 @@
 
 import UIKit
 import CoreData
+import AudioToolbox
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
+    var timeLeft = 10
+    var timer: Timer?
+    
+    @objc func startTimer() {
+        timeLeft -= 1
+        
+        if (timeLeft <= 0) {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    
     var taskItems: [NSManagedObject] = []
     @IBOutlet weak var taskTitleLabel: UILabel!
     @IBOutlet weak var taskTitleTextField: UITextField!
@@ -23,7 +37,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         // allows user to dismiss keyboard even if nothing was selected
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AddTaskViewController.viewTapped(gestureRecognizer:)))
         view.addGestureRecognizer(tapGesture)
-
+        
         setupTimeLimitPicker()
         setupSubmitButton()
         setFontSize()
