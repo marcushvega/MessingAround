@@ -4,8 +4,8 @@ import UIKit
 
 class StartButtonCell: UITableViewCell {
     
-    func createStartButtonCell() {
-        self.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
+    func createStartButtonCell(completed: Bool, bgColor: UIColor) {
+        self.backgroundColor = bgColor
         
         self.textLabel?.text = "Start"
         self.textLabel?.textColor = UIColor.blue
@@ -13,6 +13,10 @@ class StartButtonCell: UITableViewCell {
         self.textLabel?.textAlignment = NSTextAlignment.center
         
         self.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        
+//        self.layer.borderColor = UIColor.white.cgColor
+//        self.layer.cornerRadius = 15
+//        self.layer.borderWidth = 5
     }
     
     func cellType() -> String {

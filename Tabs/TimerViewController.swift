@@ -2,15 +2,17 @@
 
 import UIKit
 import AudioToolbox
+import CoreData
 
 class TimerViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var playPauseBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
     
+//    var tasks:[NSManagedObject]
     var timer: Timer?
-    var initialTime = 1800
-    var timeLeft = 1800
+    var initialTime = 5
+    var timeLeft = 5
     var timerIsPaused = true
     
     let relativePointSizeConstant:CGFloat = 0.056
@@ -67,7 +69,8 @@ class TimerViewController: UIViewController {
             AudioServicesPlaySystemSound(SystemSoundID(1016))
             // if timer has reached 0 (zero)
             playPauseBtn.setImage(nil, for: .normal)
-            playPauseBtn.setTitle("Completed", for: .normal)
+            playPauseBtn.setTitle("DONE", for: .normal)
+//            playPauseBtn.title
             
         }
         else if (timeLeft < -20 || timerIsPaused) {
@@ -82,11 +85,12 @@ class TimerViewController: UIViewController {
         let playImage = UIImage(systemName: "play.fill", withConfiguration: playPauseImageConfig)
         
         // if task timer has expired
-        if (playPauseBtn.titleLabel?.text == "Completed") {
-            // do nothing
-        }
+//        if (playPauseBtn.titleLabel?.text == "DONE") {
+//            timeLeft = 0
+////            prepare(for: <#T##UIStoryboardSegue#>, sender: <#T##Any?#>)/
+//        }
         // if timer is not running then start timer
-        else if (timerIsPaused) {
+        if (timerIsPaused) {
             playPauseBtn.setImage(pauseImage, for: .normal)
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
             timerIsPaused = false
@@ -105,11 +109,12 @@ class TimerViewController: UIViewController {
         
         timer?.invalidate()    // cancels timer
         timer = nil
-        timeLeft = 5           // resets time
+        timeLeft = 5          // resets time
         //timeLeft = initialTime
         
         playPauseBtn.setTitle(nil, for: .normal)
         playPauseBtn.setImage(playImage, for: .normal)
+        timerIsPaused = false
         
         // resets time text
         timerLabel.text = String(format: "%02d:%02d:%02d", (timeLeft / 3600), (timeLeft % 3600 / 60), (timeLeft % 60))

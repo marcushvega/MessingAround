@@ -28,9 +28,7 @@ class TasksViewController: UIViewController {
         navigationItem.title = "Task List"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTaskFromList))
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
         pullSavedData()
         self.tasksTableView.reloadData()
     }
@@ -99,24 +97,40 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.adjustsFontForContentSizeCategory = true
         cell.textLabel?.textColor = UIColor.blue
         
-        cell.backgroundColor = UIColor.init(red: 229/255, green: 187/255, blue: 175/255, alpha: 0.88)
-        
         let task = taskItems[indexPath.section]
+        let taskCompleted = task.value(forKeyPath: "completed") as! Bool
+//        let taskCompleted = true
+        
+        let finishedColor = UIColor.init(red: 124/255, green: 205/255, blue: 124/255, alpha: 0.7)
+        let unfinishedColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 0.8)
+        let cellColor: UIColor
+        
+        // if task has been completed (new tasks are always marked as incompleted See AddTasksViewController func save(...)
+        if (taskCompleted == true) {
+            cellColor = finishedColor
+        }
+        // if task has not been completed
+        else {
+            cellColor = unfinishedColor
+        }
+        
+        cell.backgroundColor = cellColor
         
         if (indexPath.row == 0) {
             cell.textLabel?.text = "Time: "
             cell.detailTextLabel?.text = "\(task.value(forKeyPath: "time") ?? 22) minutes"
+            cell.detailTextLabel?.textColor = UIColor.black
         }
             // create completion cell at each row 1
         else if (indexPath.row == 1) {
             let completionCell = CompletionItemCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "CompletionItemCell")
-            completionCell.createCompletionCell()
+            completionCell.createCompletionCell(completed: taskCompleted, bgColor: cellColor)
             return completionCell
         }
             // create startButton cell at each row 2
         else if (indexPath.row == numberOfDetails) {
             let startButtonCell = StartButtonCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "startButtonCell")
-            startButtonCell.createStartButtonCell()
+            startButtonCell.createStartButtonCell(completed: taskCompleted, bgColor: cellColor)
             return startButtonCell
         }
         return cell
@@ -172,7 +186,13 @@ extension TasksViewController: UITableViewDataSource, UITableViewDelegate {
         button.largeContentTitle = "\(task.value(forKeyPath: "title") as! String)"
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action: #selector(handleDropDown), for: .touchUpInside)
-        button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)
+        
+        if (task.value(forKeyPath: "completed") as! Bool) {
+            button.backgroundColor = UIColor.init(red: 124/255, green: 205/255, blue: 124/255, alpha: 1)
+        }
+        else {
+            button.backgroundColor = UIColor.init(red: 222/255, green: 147/255, blue: 141/255, alpha: 1)
+        }
         
         return button
     }

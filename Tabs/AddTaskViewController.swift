@@ -6,18 +6,6 @@ import AudioToolbox
 
 class AddTaskViewController: UIViewController, UITextFieldDelegate {
 
-    var timeLeft = 10
-    var timer: Timer?
-    
-    @objc func startTimer() {
-        timeLeft -= 1
-        
-        if (timeLeft <= 0) {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
     
     var taskItems: [NSManagedObject] = []
     @IBOutlet weak var taskTitleLabel: UILabel!
@@ -27,7 +15,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIButton!
     
     private var timeLimitPicker = UIDatePicker()
-    private var timeLimit: Int = 0
+    private var timeLimit: Int = 10
     
     let relativeFontConstant:CGFloat = 0.056
     
@@ -39,6 +27,8 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tapGesture)
         
         setupTimeLimitPicker()
+//        timeLimitPicker.setDate(NSDate (timeIntervalSinceReferenceDate: -10) as Date, animated: true)
+        
         setupSubmitButton()
         setFontSize()
         setupTextFields()
@@ -59,11 +49,12 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     
     @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
         timeLimit = Int(timeLimitPicker.countDownDuration)
+        
         timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60), 0)
 //        view.endEditing(true)
     }
     
-    func save(taskName: String, taskTime: Int) {
+    func save(taskName: String, taskTime: Int, completed: Bool = false) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -74,6 +65,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
         
         taskItem.setValue(taskName, forKey: "title")
         taskItem.setValue(taskTime, forKey: "time")
+        taskItem.setValue(completed, forKey: "completed")
         
         do {
             try managedContext.save()
@@ -108,6 +100,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     func setupTimeLimitPicker() {
         timeLimitPicker = UIDatePicker()
         timeLimitPicker.datePickerMode = .countDownTimer
+        
         timeLimitPicker.minuteInterval = 5
         timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
     }
@@ -152,5 +145,6 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
      @IBAction func goBackToTasksVC(_ sender: Any) {
         performSegue(withIdentifier: "unwindToTaskVC", sender: self)
      }
+    
 }
 
