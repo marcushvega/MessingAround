@@ -41,15 +41,21 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
             submitButton.isEnabled = true
             submitButton.backgroundColor = UIColor.init(red: 60/255, green: 183/255, blue: 66/255, alpha: 0.6)
         }
+        else {
+            submitButton.isEnabled = false
+        }
         
         view.endEditing(true)
     }
     
-    @objc func doneButtonTapped() {view.endEditing(true)}
+    @objc func doneButtonTapped() {
+        timeLimit = Int(timeLimitPicker.countDownDuration)
+        timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60), 0)
+        view.endEditing(true)
+    }
     
     @objc func timeLimitChanged(timeLimitPicker: UIDatePicker) {
         timeLimit = Int(timeLimitPicker.countDownDuration)
-        
         timeLimitTextField.text = String(format: "%02d:%02d:%02d", (timeLimit / 3600), (timeLimit % 3600 / 60), 0)
 //        view.endEditing(true)
     }
@@ -98,9 +104,7 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setupTimeLimitPicker() {
-        timeLimitPicker = UIDatePicker()
         timeLimitPicker.datePickerMode = .countDownTimer
-        
         timeLimitPicker.minuteInterval = 5
         timeLimitPicker.addTarget(self, action: #selector(timeLimitChanged(timeLimitPicker:)), for: .valueChanged)
     }
@@ -145,6 +149,9 @@ class AddTaskViewController: UIViewController, UITextFieldDelegate {
      @IBAction func goBackToTasksVC(_ sender: Any) {
         performSegue(withIdentifier: "unwindToTaskVC", sender: self)
      }
-    
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        timeLimitPicker.countDownDuration = 300
+    }
 }
 
